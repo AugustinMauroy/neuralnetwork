@@ -1,6 +1,6 @@
-const readline = require('readline');
-const natural = require('./lib.js');
-const data = require('./data.json');
+import readline from 'node:readline';
+import natural from './lib.js';
+import data from './data.json' assert { type: 'json' };
 
 class Chatbot {
 	constructor() {

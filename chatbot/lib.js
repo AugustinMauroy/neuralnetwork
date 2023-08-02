@@ -96,4 +96,4 @@ class BayesClassifier {
 	}
 }
 
-module.exports = natural;
+export default natural;

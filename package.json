@@ -6,9 +6,13 @@
     "name": "Augustin mauroy"
   },
   "scripts": {
+    "xor": "cd xor && node index.js",
+    "id3": "cd id3 && node index.js",
+    "chatbot": "cd chatbot && node index.js ",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "type": "module",
   "devDependencies": {
     "eslint": "^8.46.0"
   }
