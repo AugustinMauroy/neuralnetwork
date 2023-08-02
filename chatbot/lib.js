@@ -11,27 +11,19 @@ class BayesClassifier {
 		this.categories = new Set();
 		this.categoryCount = new Map();
 		this.featureCount = new Map();
-		this.featureProb = new Map(); // Add this line to initialize the featureProb map
-		this.categoryProb = new Map(); // You should also add this line to initialize the categoryProb map
+		this.featureProb = new Map();
+		this.categoryProb = new Map();
 	}
 
 	addDocument(doc, category) {
 		this.docs.push({ doc, category });
 		this.categories.add(category);
-		doc.split(' ').forEach(word => {
+		doc.split(/\s+/).forEach(word => {
 			this.features.add(word);
 			const featureCountKey = `${word}:${category}`;
-			if (this.featureCount.has(featureCountKey)) {
-				this.featureCount.set(featureCountKey, this.featureCount.get(featureCountKey) + 1);
-			} else {
-				this.featureCount.set(featureCountKey, 1);
-			}
+			this.featureCount.set(featureCountKey, (this.featureCount.get(featureCountKey) || 0) + 1);
 		});
-		if (this.categoryCount.has(category)) {
-			this.categoryCount.set(category, this.categoryCount.get(category) + 1);
-		} else {
-			this.categoryCount.set(category, 1);
-		}
+		this.categoryCount.set(category, (this.categoryCount.get(category) || 0) + 1);
 	}
 
 	train() {
@@ -44,7 +36,7 @@ class BayesClassifier {
 			const totalDocsNotInCategory = docsNotInCategory.length;
 			this.features.forEach(feature => {
 				const featureCountKey = `${feature}:${category}`;
-				const featureCount = this.featureCount.has(featureCountKey) ? this.featureCount.get(featureCountKey) : 0;
+				const featureCount = this.featureCount.get(featureCountKey) || 0;
 				const featureProbInCategory = (featureCount + 1) / (featureCountInCategory + this.features.size);
 				const featureProbNotInCategory = ((featureCountNotInCategory - featureCount) + 1) / (totalDocsNotInCategory - featureCountInCategory + this.features.size);
 				const featureProb = featureProbInCategory / (featureProbInCategory + featureProbNotInCategory);
@@ -57,10 +49,13 @@ class BayesClassifier {
 	}
 
 	classify(doc) {
+		const processedInput = doc.toLowerCase().replace(/[^\w\s]/gi, '');
+		const words = processedInput.split(/\s+/);
+
 		const probs = new Map();
 		this.categories.forEach(category => {
 			let prob = this.categoryProb.get(category);
-			doc.split(' ').forEach(word => {
+			words.forEach(word => {
 				const featureProbKey = `${word}:${category}`;
 				if (this.featureProb.has(featureProbKey)) {
 					prob *= this.featureProb.get(featureProbKey);
@@ -68,24 +63,23 @@ class BayesClassifier {
 			});
 			probs.set(category, prob);
 		});
-		let maxProb = 0;
-		let maxCategory = null;
-		probs.forEach((prob, category) => {
-			if (prob > maxProb) {
-				maxProb = prob;
-				maxCategory = category;
-			}
-		});
-		return maxCategory;
+
+		const sortedProbs = Array.from(probs.entries()).sort((a, b) => b[1] - a[1]);
+		const maxProb = sortedProbs[0][1];
+		const threshold = 0.1; // Set a threshold for response selection
+		const topCategories = sortedProbs.filter(entry => entry[1] >= maxProb * threshold);
+		const responseCategories = topCategories.map(entry => entry[0]);
+
+		// If the classifier is not confident, return a default response or ask for clarification.
+		const ambiguous = responseCategories.length === 1 && maxProb < 0.5;
+		return ambiguous ? 'I\'m not sure. Can you please provide more context?' : responseCategories;
 	}
 
 	featureCountInCategory(category) {
 		let count = 0;
 		this.features.forEach(feature => {
 			const featureCountKey = `${feature}:${category}`;
-			if (this.featureCount.has(featureCountKey)) {
-				count += this.featureCount.get(featureCountKey);
-			}
+			count += this.featureCount.get(featureCountKey) || 0;
 		});
 		return count;
 	}
