@@ -23,37 +23,43 @@ class Chatbot {
 	}
 
 	classify(doc) {
-		const processedInput = doc.toLowerCase();
-		const responseCategories = this.classifier.classify(processedInput);
+
+		try {
+			const processedInput = doc.toLowerCase();
+			const responseCategories = this.classifier.classify(processedInput);
 	
-		// Store the current user input and chatbot response in the context
-		this.context.push({ input: doc, output: responseCategories[0] });
+			// Store the current user input and chatbot response in the context
+			this.context.push({ input: doc, output: responseCategories[0] });
 	
-		// Limit the context to a reasonable number of interactions (e.g., 5)
-		const maxContextSize = 5;
-		if (this.context.length > maxContextSize) {
+			// Limit the context to a reasonable number of interactions (e.g., 5)
+			const maxContextSize = 5;
+			if (this.context.length > maxContextSize) {
 		  this.context.shift(); // Remove the oldest element from the context
-		}
+			}
 	
-		// For this example, we'll just return the first response category.
-		// You can customize the response selection logic based on the context.
-		return responseCategories[0];
+			// If the classifier is not confident, return a default response or ask for clarification.
+			const ambiguous = responseCategories.length === 1 && maxProb < 0.5;
+			return ambiguous ? 'I\'m not sure. Can you please provide more context?' : responseCategories[0];
+		} catch (error) {
+			console.error(`Error occurred while processing the input: ${error.message}`);
+			return 'Oops! Something went wrong. Please try again.';
+		}
 	  }
 
-      start() {
-        const prompt = () => {
-          this.rl.question(textColor(32, '[You]: '), input => {
-            // Store the user's input in the context (before processing for classification)
-            this.context.push({ input });
+	start() {
+		const prompt = () => {
+			this.rl.question(textColor(32, '[You]: '), input => {
+				// Store the user's input in the context (before processing for classification)
+				this.context.push({ input });
     
-            const output = this.classify(input);
-            console.log(`${textColor(31, '[Chatbot]:')} ${output}`);
-            prompt();
-          });
-        };
+				const output = this.classify(input);
+				console.log(`${textColor(31, '[Chatbot]:')} ${output}`);
+				prompt();
+			});
+		};
     
-        prompt();
-      }
+		prompt();
+	}
 }
 
 export default Chatbot;
