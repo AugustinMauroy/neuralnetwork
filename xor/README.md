@@ -11,5 +11,6 @@ To test the network, the feedforward function is called with the inputs [0, 0], 
 To run the code, simply run the following command in the terminal:
 
 ```bash
-node index.js
+# You nedd to be on root of this repo
+npm run xor
 ```
