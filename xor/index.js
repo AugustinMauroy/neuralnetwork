@@ -1,6 +1,6 @@
 // Define the parameters of the neural network
 const inputSize = 2;
-const hiddenSize = 3;
+const hiddenSize = 4;
 const outputSize = 1;
 const learningRate = 0.1;
 
