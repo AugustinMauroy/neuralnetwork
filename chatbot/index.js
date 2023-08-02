@@ -1,9 +1,5 @@
-import { readFileSync } from 'node:fs';
-import parseCJSON from './lib/cjson.js';
 import Chatbot from './lib/chatbot.js';
-
-// get data
-const data = parseCJSON(readFileSync('./data.json', 'utf8'));
+import data from './data.json' assert { type: 'json' };
 
 // Preprocess the data
 const preprocessedData = data.map(item => ({
