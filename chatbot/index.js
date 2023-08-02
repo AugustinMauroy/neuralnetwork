@@ -15,4 +15,7 @@ preprocessedData.forEach(item => {
 chatbot.train();
 
 // Start the REPL
-chatbot.start();
+//chatbot.REPLstart();
+
+// Start API server
+//chatbot.APIstart();

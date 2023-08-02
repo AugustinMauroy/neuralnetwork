@@ -1,4 +1,5 @@
 import readline from 'node:readline';
+import http from 'node:http';
 import natural from './natural.js';
 
 const textColor = (colorCode, text) => `\x1b[${colorCode}m${text}\x1b[0m`;
@@ -45,7 +46,7 @@ class Chatbot {
 	  }
 	}
   
-	start() {
+	REPLstart() {
 	  const prompt = () => {
 			this.rl.question(textColor(32, '[You]: '), input => {
 		  // Remove punctuation from the user's input
@@ -58,8 +59,42 @@ class Chatbot {
 		  prompt();
 			});
 	  };
-  
+
 	  prompt();
+	}
+
+	APIstart() {
+		console.warn('This feature is experimental and not recommended for production use.');
+		const server = http.createServer((req, res) => {
+			// Set CORS headers
+			res.setHeader('Access-Control-Allow-Origin', '*');
+			res.setHeader('Access-Control-Request-Method', '*');
+			res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET');
+			res.setHeader('Access-Control-Allow-Headers', '*');
+			if (req.method === 'OPTIONS') {
+				res.writeHead(200);
+				res.end();
+				return;
+			}
+			const { url } = req;
+			try {
+				// trhow error if no input is provided
+				if (!url.includes('?input=')) {
+					throw new Error('No input provided');
+				}
+				const query = url.split('?')[1];
+				const input = query.split('=')[1];
+				const output = this.classify(input);
+				res.writeHead(200, { 'Content-Type': 'application/json' });
+				res.end(JSON.stringify({ input, output }));
+			} catch (error) {
+				res.writeHead(400, { 'Content-Type': 'application/json' });
+				res.end(JSON.stringify({ error: error.message }));
+			}
+		});
+		server.listen(3000, () => {
+			console.log('Server running at http://localhost:3000/');
+		});
 	}
 }
 
