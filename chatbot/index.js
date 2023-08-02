@@ -1,106 +1,41 @@
 const readline = require('readline');
+const natural = require('./lib.js');
 
-class natural {
-	static BayesClassifier() {
-		return new BayesClassifier();
-	}
-}
-
-class BayesClassifier {
+class Chatbot {
 	constructor() {
-		this.docs = [];
-		this.features = new Set();
-		this.categories = new Set();
-		this.categoryCount = new Map();
-		this.featureCount = new Map();
-		this.featureProb = new Map(); // Add this line to initialize the featureProb map
-		this.categoryProb = new Map(); // You should also add this line to initialize the categoryProb map
+		this.classifier = natural.BayesClassifier();
+		this.rl = readline.createInterface({
+			input: process.stdin,
+			output: process.stdout
+		});
 	}
 
 	addDocument(doc, category) {
-		this.docs.push({ doc, category });
-		this.categories.add(category);
-		doc.split(' ').forEach(word => {
-			this.features.add(word);
-			const featureCountKey = `${word}:${category}`;
-			if (this.featureCount.has(featureCountKey)) {
-				this.featureCount.set(featureCountKey, this.featureCount.get(featureCountKey) + 1);
-			} else {
-				this.featureCount.set(featureCountKey, 1);
-			}
-		});
-		if (this.categoryCount.has(category)) {
-			this.categoryCount.set(category, this.categoryCount.get(category) + 1);
-		} else {
-			this.categoryCount.set(category, 1);
-		}
+		// Add validation and sanitization here if needed
+		this.classifier.addDocument(doc, category);
 	}
 
 	train() {
-		this.categories.forEach(category => {
-			const docsInCategory = this.docs.filter(doc => doc.category === category);
-			const docsNotInCategory = this.docs.filter(doc => doc.category !== category);
-			const featureCountInCategory = this.featureCountInCategory(category);
-			const featureCountNotInCategory = this.featureCountNotInCategory(category);
-			const totalDocsInCategory = docsInCategory.length;
-			const totalDocsNotInCategory = docsNotInCategory.length;
-			this.features.forEach(feature => {
-				const featureCountKey = `${feature}:${category}`;
-				const featureCount = this.featureCount.has(featureCountKey) ? this.featureCount.get(featureCountKey) : 0;
-				const featureProbInCategory = (featureCount + 1) / (featureCountInCategory + this.features.size);
-				const featureProbNotInCategory = ((featureCountNotInCategory - featureCount) + 1) / (totalDocsNotInCategory - featureCountInCategory + this.features.size);
-				const featureProb = featureProbInCategory / (featureProbInCategory + featureProbNotInCategory);
-				const featureProbKey = `${feature}:${category}`;
-				this.featureProb.set(featureProbKey, featureProb);
-			});
-			const categoryProb = totalDocsInCategory / this.docs.length;
-			this.categoryProb.set(category, categoryProb);
-		});
+		this.classifier.train();
 	}
 
 	classify(doc) {
-		const probs = new Map();
-		this.categories.forEach(category => {
-			let prob = this.categoryProb.get(category);
-			doc.split(' ').forEach(word => {
-				const featureProbKey = `${word}:${category}`;
-				if (this.featureProb.has(featureProbKey)) {
-					prob *= this.featureProb.get(featureProbKey);
-				}
+		const processedInput = doc.toLowerCase().replace(/[^\w\s]/gi, '');
+		return this.classifier.classify(processedInput);
+	}
+
+	start() {
+		const textColor = (colorCode, text) => `\x1b[${colorCode}m${text}\x1b[0m`;
+
+		const prompt = () => {
+			this.rl.question(textColor(32, '[You]: '), input => {
+				const output = this.classify(input);
+				console.log(`${textColor(31, '[Chatbot]:')} ${output}`);
+				prompt();
 			});
-			probs.set(category, prob);
-		});
-		let maxProb = 0;
-		let maxCategory = null;
-		probs.forEach((prob, category) => {
-			if (prob > maxProb) {
-				maxProb = prob;
-				maxCategory = category;
-			}
-		});
-		return maxCategory;
-	}
+		};
 
-	featureCountInCategory(category) {
-		let count = 0;
-		this.features.forEach(feature => {
-			const featureCountKey = `${feature}:${category}`;
-			if (this.featureCount.has(featureCountKey)) {
-				count += this.featureCount.get(featureCountKey);
-			}
-		});
-		return count;
-	}
-
-	featureCountNotInCategory(category) {
-		let count = 0;
-		this.features.forEach(feature => {
-			const featureCountKey = `${feature}:${category}`;
-			if (!this.featureCount.has(featureCountKey)) {
-				count += 1;
-			}
-		});
-		return count;
+		prompt();
 	}
 }
 
@@ -135,38 +70,17 @@ const data = [
 ];
 
 // Preprocess the data
-const preprocessedData = data.map(item => {
-	return {
-		input: item.question,
-		output: item.answer
-	};
-});
+const preprocessedData = data.map(item => ({
+	input: item.question,
+	output: item.answer
+}));
 
 // Train the chatbot
-const classifier = natural.BayesClassifier();
+const chatbot = new Chatbot();
 preprocessedData.forEach(item => {
-	classifier.addDocument(item.input, item.output);
+	chatbot.addDocument(item.input, item.output);
 });
-classifier.train();
-
-// Create the readline interface
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout
-});
-
-// REPL utilities
-const textColor = (colorCode, text) => `\x1b[${colorCode}m${text}\x1b[0m`;
-
-// Define the REPL prompt
-const prompt = () => {
-	rl.question(textColor(32, '[You]: '), input => {
-		const processedInput = input.toLowerCase().replace(/[^\w\s]/gi, '');
-		const output = classifier.classify(processedInput);
-		console.log(`${textColor(31, '[Chatbot]:')} ${output}`);
-		prompt();
-	});
-};
+chatbot.train();
 
 // Start the REPL
-prompt();
+chatbot.start();
