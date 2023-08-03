@@ -1,8 +1,7 @@
 import readline from 'node:readline';
 import http from 'node:http';
 import NaturalLanguageClassifier from './natural.js';
-
-const textColor = (colorCode, text) => `\x1b[${colorCode}m${text}\x1b[0m`;
+import { textColor, log } from './loging.js';
 
 class Chatbot {
 	constructor() {
@@ -100,7 +99,7 @@ class Chatbot {
 			}
 		});
 		server.listen(3000, () => {
-			console.log('Server running at http://localhost:3000/');
+			log.info('Server running at http://localhost:3000/');
 		});
 	}
 }
