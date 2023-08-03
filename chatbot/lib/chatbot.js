@@ -46,6 +46,13 @@ class Chatbot {
 	  }
 	}
   
+	saveModel(filePath) {
+		this.classifier.saveModelToFile(filePath);
+	  }
+
+	  loadModel(filePath) {
+		this.classifier.loadModelFromFile(filePath);
+	  } 
 	REPLstart() {
 	  const prompt = () => {
 			this.rl.question(textColor(32, '[You]: '), input => {

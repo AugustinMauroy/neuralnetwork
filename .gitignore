@@ -12,3 +12,6 @@ yarn-error.log*
 
 # misc
 .DS_Store
+
+# Local files
+/chatbot/trainedModel.json

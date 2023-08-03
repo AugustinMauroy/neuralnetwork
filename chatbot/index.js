@@ -14,8 +14,21 @@ preprocessedData.forEach(item => {
 });
 chatbot.train();
 
-// Start the REPL, need to be uncommented when running locally
-//chatbot.REPLstart();
+// Define the file path for model storage
+const modelFilePath = './trainedModel.json';
 
-// Start API server, need to be uncommented when running locally
-//chatbot.APIstart();
+// Save the trained model to a file
+try {
+  chatbot.saveModel(modelFilePath);
+  console.log(`Trained model saved to ${modelFilePath}`);
+} catch (error) {
+  console.error(`Error saving the trained model: ${error.message}`);
+}
+
+// Uncomment the following lines based on the desired deployment scenario:
+
+// To run the chatbot as a REPL (command-line interface):
+// chatbot.REPLstart();
+
+// To run the chatbot as an API server:
+// chatbot.APIstart();

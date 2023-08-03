@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+
 class NaturalLanguageClassifier {
 	constructor() {
 	  // Initialize the classifier with empty data structures
@@ -94,6 +96,41 @@ class NaturalLanguageClassifier {
 	  });
 	  return count;
 	}
+
+	loadModelFromFile(filePath) {
+		const jsonData = fs.readFileSync(filePath, 'utf8');
+		const modelData = JSON.parse(jsonData);
+	
+		this.documents = modelData.documents;
+		this.features = new Set(modelData.features);
+		this.categories = new Set(modelData.categories);
+		this.categoryCount = new Map(modelData.categoryCount);
+		this.featureCount = new Map(modelData.featureCount);
+		// ... load other necessary data
+	
+		// Recalculate probabilities and other parameters as needed
+		this.train();
+	  }
+
+	  saveModelToFile(filePath) {
+		const modelData = {
+		  documents: this.documents,
+		  features: Array.from(this.features),
+		  categories: Array.from(this.categories),
+		  categoryCount: Array.from(this.categoryCount),
+		  featureCount: Array.from(this.featureCount),
+		  featureProbabilities: Array.from(this.featureProbabilities),
+		  categoryProbabilities: Array.from(this.categoryProbabilities),
+		};
+	
+		const jsonData = JSON.stringify(modelData, null, 2);
+	
+		// check if the file exists
+		fs.writeFile(filePath, jsonData, (err) => {
+			if (err) throw err;
+		});
+	  }
+
 }
   
 export default NaturalLanguageClassifier;
