@@ -1,12 +1,12 @@
 import readline from 'node:readline';
 import http from 'node:http';
-import natural from './natural.js';
+import NaturalLanguageClassifier from './natural.js';
 
 const textColor = (colorCode, text) => `\x1b[${colorCode}m${text}\x1b[0m`;
 
 class Chatbot {
 	constructor() {
-	  this.classifier = natural.BayesClassifier();
+	  this.classifier = new NaturalLanguageClassifier();
 	  this.rl = readline.createInterface({
 			input: process.stdin,
 			output: process.stdout

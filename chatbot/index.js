@@ -14,8 +14,8 @@ preprocessedData.forEach(item => {
 });
 chatbot.train();
 
-// Start the REPL
+// Start the REPL, need to be uncommented when running locally
 //chatbot.REPLstart();
 
-// Start API server
+// Start API server, need to be uncommented when running locally
 //chatbot.APIstart();
