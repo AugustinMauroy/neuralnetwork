@@ -1,4 +1,4 @@
-# My IA
+# My AI
 
 My IA written in javascript and whitoout any library, except internal node.js libraries.
 
