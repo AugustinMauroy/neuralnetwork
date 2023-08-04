@@ -99,5 +99,5 @@ for (let i = 0; i < 10000; i++) {
 // Testing the neural network
 console.log(feedforward([0, 0]));
 console.log(feedforward([0, 1]));
-console.log(feedforward([1, 0])); 
+console.log(feedforward([1, 0]));
 console.log(feedforward([1, 1]));

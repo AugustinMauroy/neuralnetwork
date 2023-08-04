@@ -3,7 +3,8 @@
 		"semi": ["error", "always"],
 		"quotes": ["error", "single"],
 		"indent": ["error", "tab"],
-		"eol-last": ["error", "always"]
+		"eol-last": ["error", "always"],
+		"no-trailing-spaces": ["error", { "skipBlankLines": true }]
 	},
 	"env": {
 		"node": true,

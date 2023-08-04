@@ -52,7 +52,7 @@ class Chatbot {
 
 	  loadModel(filePath) {
 		this.classifier.loadModelFromFile(filePath);
-	  } 
+	  }
 	REPLstart() {
 	  const prompt = () => {
 			this.rl.question(textColor(32, '[You]: '), input => {
@@ -112,7 +112,7 @@ class Chatbot {
 			} else {
 				res.writeHead(404, { 'Content-Type': 'application/json' });
 				res.end(JSON.stringify({ error: 'Not found' }));
-			}	
+			}
 			
 		});
 		server.listen(3000, () => {

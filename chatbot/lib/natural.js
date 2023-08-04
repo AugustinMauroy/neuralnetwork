@@ -48,31 +48,31 @@ class NaturalLanguageClassifier {
 	}
   
 	// Classify a document and return the most likely categories
-	classify(document) {
-	  const processedInput = document.toLowerCase().replace(/[^\w\s]/gi, '');
-	  const words = processedInput.split(/\s+/);
-  
-	  const probabilities = new Map();
-	  this.categories.forEach(category => {
+	classify(document, context) {
+		const processedInput = (context + ' ' + document).toLowerCase().replace(/[^\w\s]/gi, '');
+		const words = processedInput.split(/\s+/);
+
+		const probabilities = new Map();
+		this.categories.forEach(category => {
 			let prob = this.categoryProbabilities.get(category);
 			words.forEach(word => {
-		  const featureProbKey = `${word}:${category}`;
-		  if (this.featureProbabilities.has(featureProbKey)) {
+				const featureProbKey = `${word}:${category}`;
+				if (this.featureProbabilities.has(featureProbKey)) {
 					prob *= this.featureProbabilities.get(featureProbKey);
-		  }
+				}
 			});
 			probabilities.set(category, prob);
-	  });
-  
-	  const sortedProbs = Array.from(probabilities.entries()).sort((a, b) => b[1] - a[1]);
-	  const maxProb = sortedProbs[0][1];
-	  const threshold = 0.1; // Set a threshold for response selection
-	  const topCategories = sortedProbs.filter(entry => entry[1] >= maxProb * threshold);
-	  const responseCategories = topCategories.map(entry => entry[0]);
-  
-	  // If the classifier is not confident, return a default response or ask for clarification.
-	  const ambiguous = responseCategories.length === 1 && maxProb < 0.5;
-	  return ambiguous ? 'I\'m not sure. Can you please provide more context?' : responseCategories;
+		});
+
+		const sortedProbs = Array.from(probabilities.entries()).sort((a, b) => b[1] - a[1]);
+		const maxProb = sortedProbs[0][1];
+		const threshold = 0.1; // Set a threshold for response selection
+		const topCategories = sortedProbs.filter(entry => entry[1] >= maxProb * threshold);
+		const responseCategories = topCategories.map(entry => entry[0]);
+
+		// If the classifier is not confident, return a default response or ask for clarification.
+		const ambiguous = responseCategories.length === 1 && maxProb < 0.5;
+		return ambiguous ? 'I\'m not sure. Can you please provide more context?' : responseCategories;
 	}
   
 	// Count the number of times each feature appears in documents of the given category
