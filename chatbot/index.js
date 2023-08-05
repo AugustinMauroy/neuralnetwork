@@ -28,7 +28,7 @@ try {
 // Uncomment the following lines based on the desired deployment scenario:
 
 // To run the chatbot as a REPL (command-line interface):
-chatbot.REPLstart();
+// chatbot.REPLstart();
 
 // To run the chatbot as an API server:
 // chatbot.APIstart();

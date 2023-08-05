@@ -9,6 +9,7 @@
     "xor": "cd xor && node index.js",
     "id3": "cd id3 && node index.js",
     "chatbot": "cd chatbot && node index.js ",
+    "chatbot-gpt": "cd \"chatbot GPT\" && node index.js ",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
