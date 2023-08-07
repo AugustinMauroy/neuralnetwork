@@ -10,6 +10,8 @@
     "id3": "cd id3 && node index.js",
     "chatbot": "cd chatbot && node index.js ",
     "chatbot-gpt": "cd \"chatbot GPT\" && node index.js ",
+    "rnn": "cd rnn && node index.js",
+    "cnn": "cd cnn && node index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
