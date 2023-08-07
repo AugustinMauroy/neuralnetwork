@@ -4,7 +4,12 @@
 		"quotes": ["error", "single"],
 		"indent": ["error", "tab"],
 		"eol-last": ["error", "always"],
-		"no-trailing-spaces": ["error", { "skipBlankLines": true }]
+		"no-trailing-spaces": ["error", { "skipBlankLines": true }],
+		"no-unused-vars": ["error", { "args": "none" }],
+		"no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
+		"no-var": "error",
+		"prefer-const": "error",
+		"no-const-assign": "error"
 	},
 	"env": {
 		"node": true,
