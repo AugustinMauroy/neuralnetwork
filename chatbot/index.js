@@ -11,19 +11,19 @@ const dataFiles = fs.readdirSync(dataDirectoryPath).filter(file => path.extname(
 // Preprocess the data
 const preprocessedData = [];
 dataFiles.forEach(file => {
-    const data = JSON.parse(fs.readFileSync(path.join(dataDirectoryPath, file), 'utf-8'));
-    data.forEach(item => {
-        preprocessedData.push({
-            input: item.question.toLowerCase(), // Convert input to lowercase for case-insensitive matching
-            output: item.answer
-        });
-    });
+	const data = JSON.parse(fs.readFileSync(path.join(dataDirectoryPath, file), 'utf-8'));
+	data.forEach(item => {
+		preprocessedData.push({
+			input: item.question.toLowerCase(), // Convert input to lowercase for case-insensitive matching
+			output: item.answer
+		});
+	});
 });
 
 // Train the chatbot
 const chatbot = new Chatbot();
 preprocessedData.forEach(item => {
-    chatbot.addDocument(item.input, item.output);
+	chatbot.addDocument(item.input, item.output);
 });
 chatbot.train();
 

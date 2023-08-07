@@ -14,3 +14,7 @@ To run the code, simply run the following command in the terminal:
 # You nedd to be on root of this repo
 npm run xor
 ```
+
+## Technical Docs
+
+To learn more about the neural network, check out the [technical documentation](./docs/README.md).

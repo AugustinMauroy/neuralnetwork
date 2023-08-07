@@ -1,97 +1,124 @@
-# Chat bot documentation
+# Chatbot Class Documentation
 
-## `ChatBot.js`
+The `Chatbot` class is a simple chatbot implementation in JavaScript. It uses a Natural Language Classifier to understand user input and respond accordingly. The class provides methods to add training documents, train the classifier, and classify user inputs. Additionally, it supports two modes of interaction: a Read-Eval-Print Loop (REPL) mode for interactive console-based conversations and an API mode for serving responses over HTTP.
 
-This is a JavaScript class definition for a chatbot. The chatbot uses the natural language processing library natural to classify user input into categories. The chatbot stores the conversation context in an array and limits the context to a reasonable number of interactions. The chatbot prompts the user for input and responds with a classification result. The chatbot also handles errors that may occur during processing.
+## Class: Chatbot
 
-### Class Methods
+### Constructor
 
-The constructor method initializes the chatbot by creating a `natural.BayesClassifier()` instance, a readline interface, and an empty array to store the conversation context.
+#### `Chatbot()`
 
-#### `constructor()`
+Creates a new instance of the `Chatbot` class. Initializes the Natural Language Classifier and sets up a Readline interface for console interaction.
 
-The constructor method initializes the chatbot by creating a `natural.BayesClassifier()` instance, a readline interface, and an empty array to store the conversation context.
+### Instance Methods
 
 #### `addDocument(doc, category)`
 
-The `addDocument()` method adds a document to the classifier with the specified category. The doc parameter is the document to be added, and the category parameter is the category to which the document belongs.
+Adds a training document to the Natural Language Classifier for a given category.
+
+- `doc` (string): The text of the training document.
+- `category` (string): The category label associated with the training document.
 
 #### `train()`
 
-The `train()` method trains the classifier with the documents that have been added using the `addDocument()` method.
+Trains the Natural Language Classifier with the added training documents.
 
 #### `classify(doc)`
 
-The `classify()` method classifies the input document into a category using the trained classifier. The doc parameter is the input document to be classified. The method returns the category that the input document belongs to.
+Classifies a user input using the trained Natural Language Classifier and returns the chatbot's response category.
 
-##### `start()`
+- `doc` (string): The user's input to be classified.
 
-The `start()` method starts the chatbot by prompting the user for input and responding with a classification result. The method uses the readline interface to prompt the user for input and the `classify()` method to classify the input document. The method also stores the conversation context in an array and limits the context to a reasonable number of interactions.
-
-##### `REPLstart()`
-
-The `REPLstart()` method starts the chatbot in a REPL (Read-Eval-Print Loop) mode. The method prompts the user for input and responds with a classification result. The method uses the readline interface to prompt the user for input and the `classify()` method to classify the input document. The method also stores the conversation context in an array and limits the context to a reasonable number of interactions.
-
-##### `APIstart()`
-
-The `APIstart()` method starts the chatbot in an API mode. The method creates an HTTP server that listens for incoming requests. The method handles two types of requests: a GET request to the root URL that returns an HTML page with a form to submit input, and a GET request to the `/api` URL that expects a query parameter `input` with the input to classify. The method responds with a JSON object that contains the input and the classification result.
+Returns:
+- A string representing the chatbot's response category based on the input.
 
 #### `saveModel(filePath)`
 
-The `saveModel()` method saves the trained classifier to a file. The filePath parameter is the path to the file where the classifier should be saved.
+Saves the trained model of the Natural Language Classifier to a file.
+
+- `filePath` (string): The path to the file where the model will be saved.
 
 #### `loadModel(filePath)`
 
-The `loadModel()` method loads a trained classifier from a file. The filePath parameter is the path to the file where the classifier is saved.
+Loads a previously saved model of the Natural Language Classifier from a file.
 
-### Dependencies
+- `filePath` (string): The path to the file containing the saved model.
 
-The chatbot class depends on the following libraries:
+#### `REPLstart()`
 
-* `node:readline`: A built-in Node.js module that provides an interface for reading input from the command line.
-* `node:http`: A built-in Node.js module that provides an interface for creating HTTP servers.
-* `node:fs`: A built-in Node.js module that provides an interface for working with the file system.
-* [`./natural.js`](#naturaljs): A custom module that exports the natural library.
+Starts the chatbot in REPL mode for interactive console-based conversations. The chatbot will continuously prompt the user for input and provide responses until the user exits the REPL.
 
-## `naturel.js`
+#### `APIstart()`
 
-### `NaturalLanguageClassifier` Class
+Starts the chatbot in API mode for serving responses over HTTP. It sets up an HTTP server listening on port 3000. The API accepts input queries as HTTP GET requests with the `input` query parameter. The chatbot responds with the classification result in JSON format.
 
-#### `constructor()`
+**Note**: The `APIstart` method is marked as experimental and not recommended for production use.
 
-The constructor method initializes the `NaturalLanguageClassifier` instance by creating empty data structures to store the documents, features, categories, and counts needed for the classifier.
+# NaturalLanguageClassifier Class Documentation
+
+The `NaturalLanguageClassifier` class is a simple implementation of a Naive Bayes classifier for natural language processing. It allows you to add training documents with associated categories, train the classifier to calculate feature and category probabilities, and classify new documents based on their likelihood of belonging to different categories.
+
+## Class: NaturalLanguageClassifier
+
+### Constructor
+
+#### `NaturalLanguageClassifier()`
+
+Creates a new instance of the `NaturalLanguageClassifier` class. Initializes the classifier with empty data structures.
+
+### Instance Methods
 
 #### `addDocument(document, category)`
 
-The `addDocument()` method adds a document to the classifier with the specified category. The `document` parameter is the text document to be added, and the `category` parameter is the category to which the document belongs.
+Adds a training document to the classifier with the given category.
+
+- `document` (string): The text of the training document.
+- `category` (string): The category label associated with the training document.
 
 #### `train()`
 
-The `train()` method trains the classifier with the documents that have been added using the `addDocument()` method. The method calculates the probability of each feature in each category and stores the probabilities in the `featureProbabilities` map and the category probabilities in the `categoryProbabilities` map.
+Trains the classifier by calculating feature and category probabilities based on the added training documents.
 
 #### `classify(document, context)`
 
-The `classify()` method classifies the input document into one or more categories using the trained classifier. The `document` parameter is the input text document to be classified, and the optional `context` parameter can provide additional context if needed. The method returns an array of categories that the input document likely belongs to.
+Classifies a document and returns the most likely categories it belongs to.
 
-#### `featureCountInCategory(category)`
+- `document` (string): The text of the document to be classified.
+- `context` (string): The context to be considered along with the document during classification.
 
-The `featureCountInCategory()` method returns the total count of features in the specified category. It takes the `category` parameter as input and returns the count of features present in documents belonging to that category.
-
-#### `featureCountNotInCategory(category)`
-
-The `featureCountNotInCategory()` method returns the total count of features that are not present in the specified category. It takes the `category` parameter as input and returns the count of features not found in documents belonging to that category.
+Returns:
+- An array of strings representing the most likely categories for the document.
 
 #### `loadModelFromFile(filePath)`
 
-The `loadModelFromFile()` method loads the classifier's model data from a file specified by the `filePath`. It reads the JSON data containing the classifier's documents, features, categories, category counts, feature counts, feature probabilities, and category probabilities. After loading the data, the classifier is ready for classification without requiring further training.
+Loads a previously saved model of the classifier from a file.
+
+- `filePath` (string): The path to the file containing the saved model.
 
 #### `saveModelToFile(filePath)`
 
-The `saveModelToFile()` method saves the classifier's model data to a file specified by the `filePath`. It creates a JSON representation of the classifier's documents, features, categories, category counts, feature counts, feature probabilities, and category probabilities, and writes this data to the specified file.
+Saves the trained model of the classifier to a file.
 
-Note: The `loadModelFromFile()` and `saveModelToFile()` methods are useful for persisting the classifier's trained model to disk, allowing it to be reused without retraining whenever the application is restarted.
+- `filePath` (string): The path to the file where the model will be saved.
 
+### Helper Methods
 
-### Dependencies
+These methods are used internally by the `NaturalLanguageClassifier` class.
 
-The BayesClassifier class does not have any external dependencies.
+#### `countFeaturesInCategory(category)`
+
+Counts the number of times each feature appears in documents of the given category.
+
+- `category` (string): The category for which feature counts are calculated.
+
+Returns:
+- The count of features in the specified category.
+
+#### `countFeaturesNotInCategory(category)`
+
+Counts the number of times each feature does not appear in documents of the given category.
+
+- `category` (string): The category for which feature counts are calculated.
+
+Returns:
+- The count of features not present in the specified category.
