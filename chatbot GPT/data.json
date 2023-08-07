@@ -35,19 +35,19 @@
 
 	{
 		"question": "Who made you?",
-		"answer": "I was coded by Augustin Mauroy, a talented 17-year-old student and developer from Belgium."
+		"answer": "I was coded by Augustin Mauroy, a talented developer from Belgium."
 	},{
 		"question": "Who is your creator?",
 		"answer": "My creator is Augustin Mauroy, a young developer with a passion for creating innovative projects."
 	},{
 		"question": "Who created you?",
-		"answer": "I was created by Augustin Mauroy, a talented 17-year-old student and developer from Belgium."
+		"answer": "I was created by Augustin Mauroy, a talented developer from Belgium."
 	},{
 		"question": "Tell me about Augustin.",
-		"answer": "Augustin Mauroy is a skilled programmer and a curious student. He loves exploring new technologies and enjoys turning ideas into reality through coding. In his free time, he is often found working on exciting software projects and contributing to the open-source community."
+		"answer": "Augustin Mauroy is a skilled programmer and a curious learner. He loves exploring new technologies and enjoys turning ideas into reality through coding. In his free time, he is often found working on exciting software projects and contributing to the open-source community."
 	},{
 		"question": "What does Augustin do?",
-		"answer": "Augustin is currently a high school student, diligently pursuing his education. Outside of school, he spends a significant amount of time honing his programming skills and creating applications that solve real-world problems. He is also an enthusiastic participant in coding competitions and hackathons."
+		"answer": "Augustin is a developer, always looking for ways to expand his knowledge and skills. He is enthusiastic about creating applications that solve real-world problems and enjoys participating in coding competitions and hackathons."
 	},{
 		"question": "What are some of Augustin's projects?",
 		"answer": "Augustin has worked on a diverse range of projects, including web applications, mobile apps, and software utilities. Some of his notable creations include a personal website showcasing his portfolio, a productivity tool to manage tasks effectively, and an AI-driven chatbot like me!"
@@ -57,35 +57,35 @@
 	},
 
 	{
-		"question": "Where is belgium?",
-		"answer": "Belgium is a country in Europe. It's between France, Germany, the Netherlands and Luxembourg."
+		"question": "Where is Belgium?",
+		"answer": "Belgium is a country in Europe, bordered by France, Germany, the Netherlands, and Luxembourg."
 	},{
-		"question": "Which language do they speak in belgium?",
-		"answer": "In Belgium, they speak French, Dutch and German."
+		"question": "Which language do they speak in Belgium?",
+		"answer": "In Belgium, they speak Dutch, French, and German."
 	},{
-		"question": "What is the capital of belgium?",
+		"question": "What is the capital of Belgium?",
 		"answer": "The capital of Belgium is Brussels."
 	},{
-		"question": "What is the population of belgium?",
-		"answer": "The population of Belgium is 11.46 million."
+		"question": "What is the population of Belgium?",
+		"answer": "The population of Belgium is approximately 11.46 million."
 	},{
-		"question": "What is the area of belgium?",
-		"answer": "The area of Belgium is 30,689 km²."
+		"question": "What is the area of Belgium?",
+		"answer": "The area of Belgium is 30,689 square kilometers."
 	},{
-		"question": "What is the currency of belgium?",
+		"question": "What is the currency of Belgium?",
 		"answer": "The currency of Belgium is Euro."
 	},{
 		"question": "Tell me about Belgium.",
-		"answer": "Belgium is a European country bordered by France, Germany, the Netherlands, and Luxembourg."
+		"answer": "Belgium is a European country known for its medieval towns, Renaissance architecture, as well as being the headquarters of the European Union and NATO."
 	},{
 		"question": "Which languages are spoken in Belgium?",
-		"answer": "Belgium has three official languages: French, Dutch, and German."
+		"answer": "Belgium has three official languages: Dutch, French, and German."
 	},{
 		"question": "What can you tell me about the capital city of Belgium?",
-		"answer": "The capital of Belgium is Brussels, which is also considered the de facto capital of the European Union."
+		"answer": "The capital of Belgium is Brussels, which is also considered the de facto capital of the European Union. It is known for its diverse culture, historic landmarks, and international institutions."
 	},{
 		"question": "What is the population size of Belgium?",
-		"answer": "The population of Belgium is approximately 11.46 million people."
+		"answer": "The population of Belgium is approximately 11.46 million people as of the latest available data."
 	},{
 		"question": "How large is the area of Belgium?",
 		"answer": "Belgium covers an area of around 30,689 square kilometers."
@@ -97,7 +97,7 @@
 		"answer": "As of the latest available information, Belgium is a country situated in Europe, bordered by France, Germany, the Netherlands, and Luxembourg."
 	},{
 		"question": "What are the official languages spoken in Belgium currently?",
-		"answer": "Currently, the official languages spoken in Belgium are French, Dutch, and German."
+		"answer": "Currently, the official languages spoken in Belgium are Dutch, French, and German."
 	},{
 		"question": "As of the most recent update, what is the capital city of Belgium?",
 		"answer": "As of the latest data, the capital of Belgium is still Brussels, which is also considered the de facto capital of the European Union."
@@ -114,27 +114,33 @@
 
 	{
 		"question" : "What is JavaScript?",
-		"answer" : "JavaScript is a programming language that is used to create interactive effects within web browsers."
+		"answer" : "JavaScript is a versatile programming language commonly used to create interactive effects within web browsers."
 	},{
 		"question": "What is JavaScript used for?",
-		"answer": "JavaScript is used to create interactive effects within web browsers. But also for server-side programming with Node.js, mobile app development with React Native, and desktop app development with Electron."
+		"answer": "JavaScript is used to create interactive effects within web browsers. Additionally, it is widely used for server-side programming with Node.js, mobile app development with React Native, and desktop app development with Electron."
 	},{
 		"question": "What is JavaScript used in?",
-		"answer": "JavaScript is used in web browsers, Node.js, React Native, and Electron."
+		"answer": "JavaScript is used in web browsers to enhance the user experience. It is also used on the server side with Node.js for various web applications, as well as in frameworks like React Native and Electron for cross-platform development."
 	},{
 		"question": "What is JavaScript used to create?",
-		"answer": "JavaScript is used to create interactive effects within web browsers. But also for server-side programming with Node.js, mobile app development with React Native, and desktop app development with Electron."
+		"answer": "JavaScript is used to create interactive effects within web browsers. Additionally, it is widely used for server-side programming with Node.js, mobile app development with React Native, and desktop app development with Electron."
 	},{
-		"question": "What is nodejs?",
-		"answer": "Node.js is a free, open-sourced, cross-platform JavaScript run-time environment that lets developers write command line tools and server-side scripts outside of a browser."
+		"question": "What is Node.js?",
+		"answer": "Node.js is a free, open-source, cross-platform JavaScript runtime environment that enables developers to write server-side applications and command-line tools outside of a web browser."
 	},{
-		"question": "Who created nodejs?",
-		"answer": "Node.js was created by Ryan Dahl in 2009."
+		"question": "Who created Node.js?",
+		"answer": "Node.js was created by Ryan Dahl and was first released in 2009."
 	},{
-		"question": "When was nodejs created?",
-		"answer": "Node.js was created in 2009."
+		"question": "When was Node.js created?",
+		"answer": "Node.js was first released in 2009."
 	}, {
-		"question": "What is nodejs used for?",
-		"answer": "Node.js is used for server-side programming with JavaScript."
+		"question": "What is Node.js used for?",
+		"answer": "Node.js is primarily used for server-side programming with JavaScript, allowing developers to build scalable and efficient network applications."
+	},{
+		"question": "What are the key features of Node.js?",
+		"answer": "Node.js has several key features, including non-blocking I/O operations, event-driven architecture, package management with npm, and the ability to run JavaScript on the server-side."
+	},{
+		"question": "Is Node.js still actively maintained?",
+		"answer": "Yes, Node.js is actively maintained by a large and vibrant community, and it continues to receive regular updates and improvements."
 	}
 ]
