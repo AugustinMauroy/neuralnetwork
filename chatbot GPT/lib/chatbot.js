@@ -38,6 +38,14 @@ class Chatbot {
 		}
 	}
 
+	saveModel(filename) {
+		this.classifier.saveModel(filename);
+	}
+
+	loadModel(filename) {
+		this.classifier.loadModel(filename);
+	}
+
 	REPLstart() {
 		const prompt = () => {
 			this.rl.question(textColor(32, '[You]: '), input => {
