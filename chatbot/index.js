@@ -1,16 +1,29 @@
 import Chatbot from './lib/chatbot.js';
-import data from './data.json' assert { type: 'json' };
+import fs from 'fs';
+import path from 'path';
+
+// Define the directory path for data storage
+const dataDirectoryPath = './data';
+
+// Read all JSON files in the data directory
+const dataFiles = fs.readdirSync(dataDirectoryPath).filter(file => path.extname(file) === '.json');
 
 // Preprocess the data
-const preprocessedData = data.map(item => ({
-	input: item.question.toLowerCase(), // Convert input to lowercase for case-insensitive matching
-	output: item.answer
-}));
+const preprocessedData = [];
+dataFiles.forEach(file => {
+    const data = JSON.parse(fs.readFileSync(path.join(dataDirectoryPath, file), 'utf-8'));
+    data.forEach(item => {
+        preprocessedData.push({
+            input: item.question.toLowerCase(), // Convert input to lowercase for case-insensitive matching
+            output: item.answer
+        });
+    });
+});
 
 // Train the chatbot
 const chatbot = new Chatbot();
 preprocessedData.forEach(item => {
-	chatbot.addDocument(item.input, item.output);
+    chatbot.addDocument(item.input, item.output);
 });
 chatbot.train();
 
@@ -28,7 +41,7 @@ try {
 // Uncomment the following lines based on the desired deployment scenario:
 
 // To run the chatbot as a REPL (command-line interface):
-// chatbot.REPLstart();
+chatbot.REPLstart();
 
 // To run the chatbot as an API server:
 // chatbot.APIstart();
