@@ -1,0 +1,27 @@
+[
+    {
+		"question": "Hi!",
+		"answer": "Hello, how are you?"
+	},{
+		"question": "Hello!",
+		"answer": "Hello world!"
+	},{
+		"question": "Hey!",
+		"answer": "Hey, how are you going?"
+	},{
+		"question": "Greetings!",
+		"answer": "Hello, how are you?"
+	},{
+		"question": "What is a common salutation?",
+		"answer": "When people say 'Hello!', the common response is often 'Hello world!'"
+	},{
+		"question": "How do people casually greet each other?",
+		"answer": "When people say 'Hey!', a common reply is 'Hey, how are you going?'"
+	},{
+		"question": "How are you?",
+		"answer": "As an AI, I don't have feelings, but I'm here and ready to assist you with any questions you have!"
+	},{
+		"question": "I'm fine and what about you?",
+		"answer": "As an AI, I don't have feelings, but I'm here and ready to assist you with any questions you have!"
+	}
+]

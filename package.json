@@ -6,14 +6,14 @@
     "name": "Augustin mauroy"
   },
   "scripts": {
-    "xor": "cd xor && node index.js",
-    "id3": "cd id3 && node index.js",
-    "chatbot": "cd chatbot && node index.js ",
-    "chatbot-gpt": "cd chatbot-GPT && node index.js ",
-    "rnn": "cd rnn && node index.js",
-    "cnn": "cd cnn && node index.js",
+    "xor-nn": "cd src && node xor-nn.mjs",
+    "xor-rnn": "cd src && node xor-rnn.mjs",
+    "id3": "cd src && node id3.mjs",
+    "chatbot": "cd src && node nlc.mjs",
+    "chatbot-gpt": "cd src && node gpt.mjs",
+    "cnn": "cd src && node cnn.mjs",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint ./**/**.mjs --fix"
   },
   "type": "module",
   "devDependencies": {

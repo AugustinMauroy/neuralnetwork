@@ -2,41 +2,38 @@
 
 My IA written in javascript and whitoout any library, except internal node.js libraries.
 
-## Chatbot
+## Neural Network
 
-This ia is a simple chatbot that learn to dialog with the user.
+Lib is stored in `lib/nn.js` and can be used as follow. It's a simple neural network `class` to create a neural network with a given number of layers and neurons per layer.
 
-**[Read more](./chatbot/README.md)**
+[read more](docs/nn.md)
 
-## Chatbot-GPT
+## Recurrent Neural Network
 
-This is a chatbot made on top of an gpt model. **Do not** confuse with openai gpt-2, this is a simple gpt model.
+Lib is stored in `lib/rnn.js` and can be used as follow. It's a simple recurrent neural network `class` to create a recurrent neural network with a given number of layers and neurons per layer. It's look like the neural network.
 
-**[Read more](./chatbot-GPT/docs/README.md)**
+[read more](docs/rnn.md)
 
+## Convolutional Neural Network
 
-## CNN
+Lib is stored in `lib/cnn.js` and can be used as follow. It's a simple convolutional neural network `class` to create a convolutional neural network with a given number of layers and neurons per layer.
 
-This ia is a simple convolutional neural network.
+[read more](docs/cnn.md)
 
-**[Read more](./CNN/docs/README.md)**
+## ID3 Decision Tree
 
-## ID3
+Lib is stored in `lib/id3.js` and can be used as follow. It's a simple ID3 decision tree `class` to create a decision tree.
 
-This ia is a decision tree that learn to resolve the id3 problem.
+[read more](docs/id3.md)
 
-**[Read more](./id3/README.md)**
+## Neural Language Classifier
 
-## RNN
+Lib is stored in `lib/nlc.js` and can be used as follow. It's a simple neural language classifier `class` to create a language classifier.
 
-This ia is a simple recurrent neural network that learn to resolve the xor problem.
+[read more](docs/nlc.md)
 
-**[Read more](./RNN/docs/README.md)**
+## Generative Pre-trained Transformer
 
-## Xor
+Lib is stored in `lib/gpt.js` and can be used as follow. It's a simple generative pre-trained transformer `class` to create a transformer.
 
-This ia is a simple neural network that learn to resolve the xor problem.
-
-**[Read more](./xor/README.md)**
-
-
+[read more](docs/gpt.md)
