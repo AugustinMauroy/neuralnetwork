@@ -1,15 +1,17 @@
 // @TODO: fix this (i have do something wrong with my brain)
 // explore using worker threads to train the network
-import RNN from './lib/rnn.mjs';
+import { RecurrentNeuralNetwork } from 'neuralnetwork-js';
 
-const rnn = new RNN(2, 4, 1, 0.1);
+const rnn = new RecurrentNeuralNetwork(2, 4, 1, 0.1);
 
 // Train the network on a set of inputs and targets
 const inputs = [[0, 0], [0, 1], [1, 0], [1, 1]];
 const targets = [[0], [1], [1], [0]];
 for (let i = 0; i < 10000000; i++) {
-	const index = i % inputs.length;
-	rnn.train(inputs[index], targets[index]);
+
+    const index = i % inputs.length;
+    rnn.train(inputs[index], targets[index]);
+
 }
 
 // Test the network on a new input
