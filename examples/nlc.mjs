@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { NaturalLanguageClassifierChatbot } from 'neuralnetwork-js';
+import { NaturalLanguageClassifierChatbot } from '@augustinmauroy/neuralnetwork';
 
 const dataDirectoryPath = './data/data-nlc';
 const modelFilePath = './data/trained-models/nlc.json';

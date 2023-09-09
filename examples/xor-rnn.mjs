@@ -1,6 +1,6 @@
 // @TODO: fix this (i have do something wrong with my brain)
 // explore using worker threads to train the network
-import { RecurrentNeuralNetwork } from 'neuralnetwork-js';
+import { RecurrentNeuralNetwork } from '@augustinmauroy/neuralnetwork';
 
 const rnn = new RecurrentNeuralNetwork(2, 4, 1, 0.1);
 

@@ -1,4 +1,4 @@
-import { DecisionTree } from 'neuralnetwork-js';
+import { DecisionTree } from '@augustinmauroy/neuralnetwork';
 
 // Example dataset
 const dataset = [

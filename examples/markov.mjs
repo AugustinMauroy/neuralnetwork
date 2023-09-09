@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { MarkovChatbot } from 'neuralnetwork-js';
+import { MarkovChatbot } from '@augustinmauroy/neuralnetwork';
 
 const dataDirectoryPath = 'examples/data/data-markov';
 

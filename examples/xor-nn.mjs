@@ -1,4 +1,4 @@
-import { NeuralNetwork } from 'neuralnetwork-js';
+import { NeuralNetwork } from '@augustinmauroy/neuralnetwork';
 
 const numberOfIterations = 100000;
 
