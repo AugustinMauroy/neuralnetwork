@@ -1,4 +1,4 @@
-# neuralnetwork-js [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/AugustinMauroy/neuralnetwork-js/badge)](https://securityscorecards.dev/viewer/?uri=github.com/AugustinMauroy/neuralnetwork-js)
+# @augustinmauroy/neuralnetwork [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/AugustinMauroy/neuralnetwork-js/badge)](https://securityscorecards.dev/viewer/?uri=github.com/AugustinMauroy/neuralnetwork)
 
 My IA librairie written in javascript and whitoout any library, except internal node.js libraries and typescript.
 

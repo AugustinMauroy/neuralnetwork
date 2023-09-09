@@ -1,9 +1,9 @@
 {
-  "name": "neuralnetwork-js",
+  "name": "@augustinmauroy/neuralnetwork",
   "version": "0.0.1-beta",
   "description": "AI made in javascript ",
   "author": {
-    "name": "Augustin mauroy"
+    "name": "AugustinMauroy"
   },
   "scripts": {
     "build": "tsc -b",
