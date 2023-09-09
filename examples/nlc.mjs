@@ -1,6 +1,6 @@
-import Chatbot from './lib/chatbot-nlc.mjs';
 import fs from 'fs';
 import path from 'path';
+import { NaturalLanguageClassifierChatbot } from 'neuralnetwork-js';
 
 const dataDirectoryPath = './data/data-nlc';
 const modelFilePath = './data/trained-models/nlc.json';
@@ -11,28 +11,38 @@ const dataFiles = fs.readdirSync(dataDirectoryPath).filter(file => path.extname(
 // Preprocess the data
 const preprocessedData = [];
 dataFiles.forEach(file => {
-	const data = JSON.parse(fs.readFileSync(path.join(dataDirectoryPath, file), 'utf-8'));
-	data.forEach(item => {
-		preprocessedData.push({
-			input: item.question.toLowerCase(), // Convert input to lowercase for case-insensitive matching
-			output: item.answer
-		});
-	});
+
+    const data = JSON.parse(fs.readFileSync(path.join(dataDirectoryPath, file), 'utf-8'));
+    data.forEach(item => {
+
+        preprocessedData.push({
+            input: item.question.toLowerCase(), // Convert input to lowercase for case-insensitive matching
+            output: item.answer
+        });
+    
+    });
+
 });
 
 // Train the chatbot
-const chatbot = new Chatbot();
+const chatbot = new NaturalLanguageClassifierChatbot();
 preprocessedData.forEach(item => {
-	chatbot.addDocument(item.input, item.output);
+
+    chatbot.addDocument(item.input, item.output);
+
 });
 chatbot.train();
 
 // Save the trained model to a file
 try {
-	chatbot.saveModel(modelFilePath);
-	console.log(`Trained model saved to ${modelFilePath}`);
+
+    chatbot.saveModel(modelFilePath);
+    console.log(`Trained model saved to ${modelFilePath}`);
+
 } catch (error) {
-	console.error(`Error saving the trained model: ${error.message}`);
+
+    console.error(`Error saving the trained model: ${error.message}`);
+
 }
 
 // Uncomment the following lines based on the desired deployment scenario:

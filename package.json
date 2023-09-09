@@ -1,22 +1,29 @@
 {
-  "name": "ai-lib-less",
+  "name": "neuralnetwork-js",
   "version": "1.0.0",
   "description": "AI made in javascript ",
   "author": {
     "name": "Augustin mauroy"
   },
   "scripts": {
-    "xor-nn": "cd src && node xor-nn.mjs",
-    "xor-rnn": "cd src && node xor-rnn.mjs",
-    "id3": "cd src && node id3.mjs",
-    "chatbot": "cd src && node nlc.mjs",
-    "chatbot-gpt": "cd src && node gpt.mjs",
-    "cnn": "cd src && node cnn.mjs",
+    "build": "tsc -b",
     "lint": "eslint .",
-    "lint:fix": "eslint ./**/**.mjs --fix"
+    "lint:fix": "eslint . --fix"
   },
-  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/AugustinMauroy/my-ai.git"
+  },
   "devDependencies": {
-    "eslint": "^8.46.0"
+    "@types/node": "~18",
+    "@typescript-eslint/parser": "^6.5.0",
+    "eslint": "^8.46.0",
+    "neuralnetwork-js": "file:./",
+    "typescript": "^5.2.2"
   }
 }

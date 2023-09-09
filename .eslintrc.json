@@ -1,23 +1,32 @@
 {
-	"rules": {
-		"semi": ["error", "always"],
-		"quotes": ["error", "single"],
-		"indent": ["error", "tab"],
-		"eol-last": ["error", "always"],
-		"no-trailing-spaces": ["error", { "skipBlankLines": true }],
-		"no-unused-vars": ["error", { "args": "none" }],
-		"no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
-		"no-var": "error",
-		"prefer-const": "error",
-		"no-const-assign": "error"
-	},
-	"env": {
-		"node": true,
-		"es6": true
-	},
-	"parserOptions": {
-		"ecmaVersion": 8,
-		"sourceType": "module"
-	}
-	
+    "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "indent": ["error", 4],
+        "padded-blocks": ["error", "always"],
+        "eol-last": ["error", "always"]
+    },
+    "overrides": [
+        {
+            "files": ["*.mjs"],
+            "parserOptions": {
+                "ecmaVersion": "latest",
+				"sourceType": "module"
+            },
+            "env": {
+                "es6": true
+            }
+        },
+        {
+            "files": ["*.ts"],
+            "parserOptions": {
+                "project": [
+                    "./tsconfig.json"
+                ],
+                "sourceType": "module",
+                "ecmaVersion": "latest"
+            },
+            "parser": "@typescript-eslint/parser"
+        }
+    ]
 }

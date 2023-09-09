@@ -1,5 +1,5 @@
 // it's should work but i can't test it because i don't know how to use it
-import CNN from './lib/cnn.mjs';
+import { CNN } from 'neuralnetwork-js';
 
 // Create a new CNN with 3 filters of size 3x3, stride 1 and padding 1
 const cnn = new CNN(5, 3, 3, 1, 1);

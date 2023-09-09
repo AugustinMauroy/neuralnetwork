@@ -15,3 +15,9 @@ yarn-error.log*
 
 # Local files
 /src/data/trained-models/**/*.json
+
+# Typescript builded files
+/dist
+
+# IDE
+.vscode
