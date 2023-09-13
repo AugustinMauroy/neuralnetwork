@@ -8,7 +8,8 @@
   "scripts": {
     "build": "tsc -b",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "test": "node ./__tests__/math.test.mjs"
   },
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
