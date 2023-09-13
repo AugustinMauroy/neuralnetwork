@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import MathUtils from './math';
 
 interface NeuralNetworkConfig {
   inputSize: number;
@@ -33,12 +34,6 @@ class NeuralNetwork {
     
     }
 
-    sigmoid(x: number): number {
-
-        return 1 / (1 + Math.exp(-x));
-    
-    }
-
     feedforward(inputs: number[]): number[] {
 
         // Calculate the outputs of the hidden layer
@@ -51,7 +46,7 @@ class NeuralNetwork {
                 sum += inputs[j] * this.weights.inputToHidden[j][i];
             
             }
-            hiddenOutputs[i] = this.sigmoid(sum);
+            hiddenOutputs[i] = MathUtils.sigmoid(sum);
         
         }
 
@@ -65,7 +60,7 @@ class NeuralNetwork {
                 sum += hiddenOutputs[j] * this.weights.hiddenToOutput[j][i];
             
             }
-            outputs[i] = this.sigmoid(sum);
+            outputs[i] = MathUtils.sigmoid(sum);
         
         }
 
@@ -86,7 +81,7 @@ class NeuralNetwork {
                 sum += inputs[j] * this.weights.inputToHidden[j][i];
             
             }
-            hiddenOutputs[i] = this.sigmoid(sum);
+            hiddenOutputs[i] = MathUtils.sigmoid(sum);
         
         }
         for (let i = 0; i < this.outputSize; i++) {
@@ -97,7 +92,7 @@ class NeuralNetwork {
                 sum += hiddenOutputs[j] * this.weights.hiddenToOutput[j][i];
             
             }
-            outputs[i] = this.sigmoid(sum);
+            outputs[i] = MathUtils.sigmoid(sum);
         
         }
 

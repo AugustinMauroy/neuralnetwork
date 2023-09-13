@@ -1,3 +1,5 @@
+import MathUtils from './math';
+
 class RecurrentNeuralNetwork {
 
     inputSize: number;
@@ -40,12 +42,6 @@ class RecurrentNeuralNetwork {
     
     }
   
-    sigmoid(x: number): number {
-
-	  return 1 / (1 + Math.exp(-x));
-    
-    }
-  
     tanh(x: number): number {
 
 	  return Math.tanh(x);
@@ -83,7 +79,7 @@ class RecurrentNeuralNetwork {
 		  sum += hiddenOutputs[j] * this.weights.hiddenToOutput[j][i];
             
             }
-            outputs[i] = this.sigmoid(sum + this.biases.output[i]);
+            outputs[i] = MathUtils.sigmoid(sum + this.biases.output[i]);
 	  
         }
   
