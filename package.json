@@ -21,7 +21,7 @@
     "url": "git://github.com/AugustinMauroy/neuralnetwork.git"
   },
   "devDependencies": {
-    "@types/node": "~20",
+    "@types/node": "~22",
     "@typescript-eslint/parser": "^7.4.0",
     "eslint": "^8.46.0",
     "@augustinmauroy/neuralnetwork": "file:./",
